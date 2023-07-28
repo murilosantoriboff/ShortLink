@@ -12,11 +12,18 @@
 
     <h1>Short Link</h1>
 
-    <form action="" method="">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form action="{% url 'valida_link' %}" method="POST">
+      {% csrf_token %}
       <label for="original_url">URL Original</label>
       <input type="text" name="original_url" required>
       <label for="short_url">URL Modificada</label>
-      <input type="text" name="short_url">
+      <input type="text" name="short_url" placeholder="www.shortlink/">
       <input type="submit" value="Criar URL" id="submit_button">
     </form>
     
